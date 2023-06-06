@@ -1,0 +1,110 @@
+import tkinter as tk
+from tkinter import ttk
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+# Crear la ventana principal
+ventana = tk.Tk()
+ventana.title("Gráfico y Tabla")
+
+# Crear la figura del gráfico
+figura = Figure(figsize=(5, 4), dpi=100)
+grafico = figura.add_subplot(111)
+
+# Crear el Treeview (tabla)
+tabla = ttk.Treeview(ventana)
+
+# Definir las columnas de la tabla
+tabla['columns'] = ("Distancia", "Trabajo")
+
+# Formato de las columnas
+tabla.column("#0", width=0, stretch=tk.NO)
+tabla.column("Distancia", width=100, anchor=tk.CENTER)
+tabla.column("Trabajo", width=100, anchor=tk.CENTER)
+
+# Encabezados de las columnas
+tabla.heading("#0", text="", anchor=tk.CENTER)
+tabla.heading("Distancia", text="Distancia (m)", anchor=tk.CENTER)
+tabla.heading("Trabajo", text="Trabajo (J)", anchor=tk.CENTER)
+
+# Agregar la tabla a la ventana
+tabla.pack(side=tk.LEFT)
+
+# Agregar el gráfico a la ventana
+canvas = FigureCanvasTkAgg(figura, master=ventana)
+canvas.draw()
+canvas.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+# Lista para almacenar los datos del gráfico y la tabla
+datos_grafico = []
+
+# Función para actualizar el gráfico y la tabla
+def actualizar_grafico_tabla():
+    # Limpiar el gráfico anterior
+    grafico.clear()
+    
+    # Crear el nuevo gráfico con los datos almacenados
+    distancias, trabajos = zip(*datos_grafico)
+    grafico.plot(distancias, trabajos)
+    grafico.set_xlabel("Distancia (m)")
+    grafico.set_ylabel("Trabajo (J)")
+    grafico.set_title("Gráfico de Trabajo Mecánico")
+    grafico.grid(True)
+    
+    # Actualizar el gráfico en la interfaz
+    canvas.draw()
+    
+    # Actualizar la tabla con los datos almacenados
+    actualizar_tabla()
+
+# Función para actualizar la tabla con los datos almacenados
+def actualizar_tabla():
+    # Limpiar los datos anteriores de la tabla
+    tabla.delete(*tabla.get_children())
+    
+    # Agregar los datos a la tabla
+    for i, (distancia, trabajo) in enumerate(datos_grafico, start=1):
+        tabla.insert("", "end", text=str(i), values=(distancia, trabajo))
+
+# Crear los widgets para ingresar los datos
+label_fuerza = tk.Label(ventana, text="Fuerza (N):")
+label_fuerza.pack()
+
+entry_fuerza = tk.Entry(ventana)
+entry_fuerza.pack()
+
+label_distancia = tk.Label(ventana, text="Distancia (m):")
+label_distancia.pack()
+
+entry_distancia = tk.Entry(ventana)
+entry_distancia.pack()
+
+# Función para calcular el trabajo
+def calcular_trabajo():
+    try:
+        fuerza = float(entry_fuerza.get())
+        distancia = float(entry_distancia.get())
+        
+        trabajo = fuerza * distancia
+        
+        label_resultado.config(text=f"El trabajo es: {trabajo} J")
+        
+        # Agregar los datos a la lista
+        datos_grafico.append((distancia, trabajo))
+        
+        # Actualizar el gráfico y la tabla
+        actualizar_grafico_tabla()
+        
+    except ValueError:
+        label_resultado.config(text="Ingrese valores numéricos válidos")
+
+# Botón para calcular el trabajo
+btn_calcular = tk.Button(ventana, text="Calcular", command=calcular_trabajo)
+btn_calcular.pack()
+
+# Etiqueta para mostrar el resultado
+label_resultado = tk.Label(ventana, text="")
+label_resultado.pack()
+
+# Iniciar el bucle de eventos
+ventana.mainloop()
