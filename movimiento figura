@@ -1,0 +1,98 @@
+from tkinter import *
+from tkinter.ttk import *
+
+class GFG:
+    def __init__(self, master=None):
+        self.master = master
+
+        # coordenadas iniciales
+        self.x = 0
+        self.y = 0
+
+        # crear figura
+        self.canvas = Canvas(master)
+        # obtener dimensiones de la ventana
+        window_width = master.winfo_width()
+        window_height = master.winfo_height()
+        # crear rectangulo en la esquina inferior izquierda
+        self.rectangle = self.canvas.create_rectangle(5, window_height - 25, 25, window_height - 5, fill="green")
+
+        # color fondo
+        self.canvas['bg'] = 'cyan'
+
+        self.canvas.pack()
+
+        # flag para indicar si se debe mover o no
+        self.move_enabled = False
+
+    def movimiento(self):
+        if self.move_enabled:
+            # mover figura
+            self.canvas.move(self.rectangle, self.x, self.y)
+            self.move_enabled = False
+        self.canvas.after(1, self.movimiento)
+
+    # movmiento a la izquierda
+    def izquierda(self, event):
+        print(event.keysym)
+        self.x = -5
+        self.y = 0
+        self.move_enabled = True
+
+    # movimiento a la derecha
+    def derecha(self, event):
+        print(event.keysym)
+        self.x = 5
+        self.y = 0
+        self.move_enabled = True
+
+    # movimiento hacia arriba
+    def arriba(self, event):
+        print(event.keysym)
+        self.x = 0
+        self.y = -5
+        self.move_enabled = True
+    
+    # movimiento hacia abajo
+    def abajo(self, event):
+        print(event.keysym)
+        self.x = 0
+        self.y = 5
+        self.move_enabled = True
+    
+    # movimiento diagonal arriba-derecha
+    def diagonal_arriba_derecha(self, event):
+        print(event.keysym)
+        self.x = 5
+        self.y = -5
+        self.move_enabled = True
+
+    # movimiento diagonal arriba-izquierda
+    def diagonal_arriba_izquierda(self, event):
+        print(event.keysym)
+        self.x = -5
+        self.y = -5
+        self.move_enabled = True
+
+if __name__ == "__main__":
+    # mostrar ventana
+    master = Tk()
+    gfg = GFG(master)
+
+    # Obtener dimensiones de la ventana después de que se haya mostrado
+    master.update()
+    window_width = master.winfo_width()
+    window_height = master.winfo_height()
+    x_position= window_width//2
+    # Establecer la posición inicial del rectángulo en la esquina inferior izquierda
+    gfg.canvas.coords(gfg.rectangle, x_position - 10, window_height - 25, x_position + 10, window_height - 5)
+
+    # controlar movimiento por teclado
+    master.bind("<KeyPress-a>", lambda e: gfg.izquierda(e))
+    master.bind("<KeyPress-d>", lambda e: gfg.derecha(e))
+    master.bind("<KeyPress-w>", lambda e: gfg.arriba(e))
+    master.bind("<KeyPress-s>", lambda e: gfg.abajo(e))
+    master.bind("<KeyPress-e>", lambda e: gfg.diagonal_arriba_derecha(e))
+    master.bind("<KeyPress-q>", lambda e: gfg.diagonal_arriba_izquierda(e))
+    master.after(0, gfg.movimiento)
+    master.mainloop()
