@@ -1,22 +1,46 @@
 import tkinter as tk
 
+ventana = tk.Tk()
+
+# Obtener el tamaño de la pantalla
+ventana.update()
+window_width = ventana.winfo_screenwidth()
+window_height = ventana.winfo_screenheight()
+
+# Obtener dimensiones de la ventana después de que se haya mostrado
+ventana.update()
+window_width = ventana.winfo_width()
+window_height = ventana.winfo_height()
+
+# Dividir la ventana en cuatro marcos
+marco_1 = tk.Frame(ventana, bg="red")
+marco_2 = tk.Frame(ventana, bg="green")
+marco_3 = tk.Frame(ventana, bg="blue")
+marco_4 = tk.Frame(ventana, bg="yellow")
+
+# Configurar el tamaño de las filas y columnas
+ventana.columnconfigure(0, weight=1, minsize=window_width // 2)
+ventana.columnconfigure(1, weight=1, minsize=window_width // 2)
+ventana.rowconfigure(0, weight=1, minsize=window_height // 2)
+ventana.rowconfigure(1, weight=1, minsize=window_height // 2)
+
+# Ubicar los marcos en la ventana
+marco_1.grid(row=0, column=0, sticky="nsew")
+marco_2.grid(row=0, column=1, sticky="nsew")
+marco_3.grid(row=1, column=0, sticky="nsew")
+marco_4.grid(row=1, column=1, sticky="nsew")
+
 class GFG:
-    def __init__(self, master=None):
-        self.master = master
+    def __init__(self, marco=None):
+        self.marco_1 = marco
 
         # coordenadas iniciales
         self.x = 0
         self.y = 0
 
-        # crear figura
-        self.canvas = tk.Canvas(master)
         # crear rectangulo en la esquina inferior izquierda
-        self.rectangle = self.canvas.create_rectangle(5, 0, 25, 20, fill="green")
-
-        # color fondo
-        self.canvas['bg'] = 'cyan'
-
-        self.canvas.pack()
+        self.rectangle = tk.Frame(self.marco_1, width=20, height=20, bg="green")
+        self.rectangle.pack()
 
         # flag para indicar si se debe mover o no
         self.move_enabled = False
@@ -24,9 +48,9 @@ class GFG:
     def movimiento(self):
         if self.move_enabled:
             # mover figura
-            self.canvas.move(self.rectangle, self.x, self.y)
+            self.rectangle.place(x=self.rectangle.winfo_x() + self.x, y=self.rectangle.winfo_y() + self.y)
             self.move_enabled = False
-        self.canvas.after(1, self.movimiento)
+        self.marco_1.after(1, self.movimiento)
 
     # movmiento a la izquierda
     def izquierda(self, event):
@@ -70,40 +94,11 @@ class GFG:
         self.y = -5
         self.move_enabled = True
 
-ventana = tk.Tk()
-
-# Obtener el tamaño de la pantalla
-ancho_pantalla = ventana.winfo_screenwidth()
-alto_pantalla = ventana.winfo_screenheight()
-
-# Obtener dimensiones de la ventana después de que se haya mostrado
-ventana.update()
-window_width = ventana.winfo_width()
-window_height = ventana.winfo_height()
-
-# Dividir la ventana en cuatro marcos
-marco_1 = tk.Frame(ventana)
-marco_2 = tk.Frame(ventana, bg="green")
-marco_3 = tk.Frame(ventana, bg="blue")
-marco_4 = tk.Frame(ventana, bg="yellow")
-
-# Configurar el tamaño de las filas y columnas
-ventana.columnconfigure(0, weight=1, minsize=window_width // 2)
-ventana.columnconfigure(1, weight=1, minsize=window_width // 2)
-ventana.rowconfigure(0, weight=1, minsize=window_height // 2)
-ventana.rowconfigure(1, weight=1, minsize=window_height // 2)
-
-# Ubicar los marcos en la ventana
-marco_1.grid(row=0, column=0, sticky="nsew")
-marco_2.grid(row=0, column=1, sticky="nsew")
-marco_3.grid(row=1, column=0, sticky="nsew")
-marco_4.grid(row=1, column=1, sticky="nsew")
-
 # Crear instancia de GFG dentro del marco 1
 gfg = GFG(marco_1)
 
 # Establecer la posición inicial del rectángulo en la esquina inferior izquierda
-gfg.canvas.coords(gfg.rectangle, 5, window_height - 25, 25, window_height - 5)
+gfg.rectangle.place(x=5, y=window_height - 25)
 
 # Controlar movimiento por teclado
 ventana.bind("<KeyPress-a>", lambda e: gfg.izquierda(e))
