@@ -7,12 +7,34 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 ventana = tk.Tk()
 ventana.title("Gráfico y Tabla")
 
+# Obtener el tamaño de la pantalla
+ancho_pantalla = ventana.winfo_screenwidth()
+alto_pantalla = ventana.winfo_screenheight()
+
+# Calcular el ancho y alto de cada cuarto de la pantalla
+ancho_cuarto = ancho_pantalla // 2
+alto_cuarto = alto_pantalla // 2
+
+# Crear los marcos para cada cuarto de la pantalla
+marco_1 = tk.Frame(ventana, width=ancho_cuarto, height=alto_cuarto, bg='blue')
+marco_1.grid(row=0, column=0)
+
+marco_2 = tk.Frame(ventana, width=ancho_cuarto, height=alto_cuarto, bg='blue')
+marco_2.grid(row=0, column=1)
+
+marco_3 = tk.Frame(ventana, width=ancho_cuarto, height=alto_cuarto, bg='red')
+marco_3.grid(row=1, column=0)
+
+marco_4 = tk.Frame(ventana, width=ancho_cuarto, height=alto_cuarto, bg='yellow')
+marco_4.grid(row=1, column=1)
+
 # Crear la figura del gráfico
 figura = Figure(figsize=(5, 4), dpi=100)
 grafico = figura.add_subplot(111)
 
 # Crear el Treeview (tabla)
-tabla = ttk.Treeview(ventana)
+tabla = ttk.Treeview(marco_4)
+tabla.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
 # Definir las columnas de la tabla
 tabla['columns'] = ("Distancia", "Trabajo")
@@ -27,11 +49,48 @@ tabla.heading("#0", text="", anchor=tk.CENTER)
 tabla.heading("Distancia", text="Distancia (m)", anchor=tk.CENTER)
 tabla.heading("Trabajo", text="Trabajo (J)", anchor=tk.CENTER)
 
-# Agregar la tabla a la ventana
-tabla.pack(side=tk.LEFT)
+# Crear los widgets para ingresar los datos
+label_fuerza = tk.Label(marco_3, text="Fuerza (N):")
+label_fuerza.pack()
+
+entry_fuerza = tk.Entry(marco_3)
+entry_fuerza.pack()
+
+label_distancia = tk.Label(marco_3, text="Distancia (m):")
+label_distancia.pack()
+
+entry_distancia = tk.Entry(marco_3)
+entry_distancia.pack()
+
+# Función para calcular el trabajo
+def calcular_trabajo():
+    try:
+        fuerza = float(entry_fuerza.get())
+        distancia = float(entry_distancia.get())
+        
+        trabajo = fuerza * distancia
+        
+        label_resultado.config(text=f"El trabajo es: {trabajo} J")
+        
+        # Agregar los datos a la lista
+        datos_grafico.append((distancia, trabajo))
+        
+        # Actualizar el gráfico y la tabla
+        actualizar_grafico_tabla()
+        
+    except ValueError:
+        label_resultado.config(text="Ingrese valores numéricos válidos")
+
+# Botón para calcular el trabajo
+btn_calcular = tk.Button(marco_3, text="Calcular", command=calcular_trabajo)
+btn_calcular.pack()
+
+# Etiqueta para mostrar el resultado
+label_resultado = tk.Label(marco_3, text="")
+label_resultado.pack()
 
 # Agregar el gráfico a la ventana
-canvas = FigureCanvasTkAgg(figura, master=ventana)
+canvas = FigureCanvasTkAgg(figura, master=marco_2)
 canvas.draw()
 canvas.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
@@ -65,46 +124,6 @@ def actualizar_tabla():
     # Agregar los datos a la tabla
     for i, (distancia, trabajo) in enumerate(datos_grafico, start=1):
         tabla.insert("", "end", text=str(i), values=(distancia, trabajo))
-
-# Crear los widgets para ingresar los datos
-label_fuerza = tk.Label(ventana, text="Fuerza (N):")
-label_fuerza.pack()
-
-entry_fuerza = tk.Entry(ventana)
-entry_fuerza.pack()
-
-label_distancia = tk.Label(ventana, text="Distancia (m):")
-label_distancia.pack()
-
-entry_distancia = tk.Entry(ventana)
-entry_distancia.pack()
-
-# Función para calcular el trabajo
-def calcular_trabajo():
-    try:
-        fuerza = float(entry_fuerza.get())
-        distancia = float(entry_distancia.get())
-        
-        trabajo = fuerza * distancia
-        
-        label_resultado.config(text=f"El trabajo es: {trabajo} J")
-        
-        # Agregar los datos a la lista
-        datos_grafico.append((distancia, trabajo))
-        
-        # Actualizar el gráfico y la tabla
-        actualizar_grafico_tabla()
-        
-    except ValueError:
-        label_resultado.config(text="Ingrese valores numéricos válidos")
-
-# Botón para calcular el trabajo
-btn_calcular = tk.Button(ventana, text="Calcular", command=calcular_trabajo)
-btn_calcular.pack()
-
-# Etiqueta para mostrar el resultado
-label_resultado = tk.Label(ventana, text="")
-label_resultado.pack()
 
 # Iniciar el bucle de eventos
 ventana.mainloop()
