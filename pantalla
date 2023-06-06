@@ -105,11 +105,6 @@ gfg = GFG(marco_1)
 # Establecer la posición inicial del rectángulo en la esquina inferior izquierda
 gfg.canvas.coords(gfg.rectangle, 5, window_height - 25, 25, window_height - 5)
 
-# Agregar el botón de cierre en la esquina superior derecha
-boton_cerrar = tk.Button(ventana, text="X", command=ventana.destroy)
-boton_cerrar.configure(width=2, height=1, takefocus=False)
-boton_cerrar.place(x=window_width-20, y=0)
-
 # Controlar movimiento por teclado
 ventana.bind("<KeyPress-a>", lambda e: gfg.izquierda(e))
 ventana.bind("<KeyPress-d>", lambda e: gfg.derecha(e))
