@@ -48,8 +48,19 @@ class GFG:
 
     def movimiento(self):
         if self.move_enabled:
-            # mover figura
-            self.rectangle.place(x=self.rectangle.winfo_x() + self.x, y=self.rectangle.winfo_y() + self.y)
+            # Obtener las dimensiones del marco
+            ancho_marco = self.marco_1.winfo_width()
+            alto_marco = self.marco_1.winfo_height()
+
+            # Calcular las nuevas coordenadas
+            nueva_x = self.rectangle.winfo_x() + self.x
+            nueva_y = self.rectangle.winfo_y() + self.y
+
+            # Verificar los límites del rectángulo
+            if 0 <= nueva_x <= ancho_marco - self.rectangle.winfo_width():
+                if 0 <= nueva_y <= alto_marco - self.rectangle.winfo_height():
+                    self.rectangle.place(x=nueva_x, y=nueva_y)
+
             self.move_enabled = False
         self.marco_1.after(1, self.movimiento)
 
@@ -70,13 +81,13 @@ class GFG:
         self.x = 0
         self.y = -5
         self.move_enabled = True
-    
+
     # movimiento hacia abajo
     def abajo(self, event):
         self.x = 0
         self.y = 5
         self.move_enabled = True
-    
+
     # movimiento diagonal arriba-derecha
     def diagonal_arriba_derecha(self, event):
         self.x = 5
@@ -89,11 +100,13 @@ class GFG:
         self.y = -5
         self.move_enabled = True
 
+
 # Crear instancia de GFG dentro del marco 1
 gfg = GFG(marco_1)
 
 # Establecer la posición inicial del rectángulo en la esquina inferior izquierda
 gfg.rectangle.place(x=anPanta//2//2, y=alPanta//2 - 55)
+
 
 # Controlar movimiento por teclado
 ventana.bind("<KeyPress-a>", lambda e: gfg.izquierda(e))
@@ -103,7 +116,6 @@ ventana.bind("<KeyPress-s>", lambda e: gfg.abajo(e))
 ventana.bind("<KeyPress-e>", lambda e: gfg.diagonal_arriba_derecha(e))
 ventana.bind("<KeyPress-q>", lambda e: gfg.diagonal_arriba_izquierda(e))
 ventana.after(0, gfg.movimiento)
-
 
 ###########################################################################
 #                               Grafico
