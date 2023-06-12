@@ -37,15 +37,17 @@ tabla = ttk.Treeview(marco_4)
 tabla.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
 # Definir las columnas de la tabla
-tabla['columns'] = ("Distancia", "Trabajo")
+tabla['columns'] = ("Fuerza", "Distancia", "Trabajo")
 
 # Formato de las columnas
 tabla.column("#0", width=0, stretch=tk.NO)
+tabla.column("Fuerza", width=100, anchor=tk.CENTER)
 tabla.column("Distancia", width=100, anchor=tk.CENTER)
 tabla.column("Trabajo", width=100, anchor=tk.CENTER)
 
 # Encabezados de las columnas
 tabla.heading("#0", text="", anchor=tk.CENTER)
+tabla.heading("Fuerza", text="Fuerza (N)", anchor=tk.CENTER)
 tabla.heading("Distancia", text="Distancia (m)", anchor=tk.CENTER)
 tabla.heading("Trabajo", text="Trabajo (J)", anchor=tk.CENTER)
 
@@ -73,7 +75,7 @@ def calcular_trabajo():
         label_resultado.config(text=f"El trabajo es: {trabajo} J")
         
         # Agregar los datos a la lista
-        datos_grafico.append((distancia, trabajo))
+        datos_grafico.append((fuerza, distancia, trabajo))
         
         # Actualizar el gráfico y la tabla
         actualizar_grafico_tabla()
@@ -103,10 +105,10 @@ def actualizar_grafico_tabla():
     grafico.clear()
     
     # Crear el nuevo gráfico con los datos almacenados
-    distancias, trabajos = zip(*datos_grafico)
-    grafico.plot(distancias, trabajos)
+    fuerzas, distancias, trabajos = zip(*datos_grafico)
+    grafico.plot(distancias, fuerzas)
     grafico.set_xlabel("Distancia (m)")
-    grafico.set_ylabel("Trabajo (J)")
+    grafico.set_ylabel("Fuerza (N)")
     grafico.set_title("Gráfico de Trabajo Mecánico")
     grafico.grid(True)
     
@@ -122,8 +124,8 @@ def actualizar_tabla():
     tabla.delete(*tabla.get_children())
     
     # Agregar los datos a la tabla
-    for i, (distancia, trabajo) in enumerate(datos_grafico, start=1):
-        tabla.insert("", "end", text=str(i), values=(distancia, trabajo))
+    for i, (fuerza, distancia, trabajo) in enumerate(datos_grafico, start=1):
+        tabla.insert("", "end", text=str(i), values=(fuerza, distancia, trabajo))
 
 # Iniciar el bucle de eventos
 ventana.mainloop()
