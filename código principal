@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from PIL import Image, ImageTk
 
 # Crear la ventana principal
 ventana = tk.Tk()
@@ -32,7 +33,7 @@ marco_4.grid(row=1, column=1)
 ########################################################################
 
 class GFG:
-    def __init__(self, marco=None):
+    def __init__(self, marco=None): # self se utiliza para acceder y asignar atributos específicos a dicha instancia.
         self.marco_1 = marco
 
         # coordenadas iniciales
@@ -117,6 +118,40 @@ ventana.bind("<KeyPress-e>", lambda e: gfg.diagonal_arriba_derecha(e))
 ventana.bind("<KeyPress-q>", lambda e: gfg.diagonal_arriba_izquierda(e))
 ventana.after(0, gfg.movimiento)
 
+
+############################################################################
+#                               Personaje
+############################################################################
+
+# Cargar la imagen del personaje
+imaP = Image.open("cosa.png")
+imaP = imaP.resize((50, 50))  # Ajustar el tamaño de la imagen
+imaP = imaP.convert("RGB")  # Convertir a formato RGB (sin transparencia)
+imaP_tk = ImageTk.PhotoImage(imaP)
+
+# Crear una etiqueta para mostrar la imagen del personaje
+etiqueta_personaje = tk.Label(marco_1, image=imaP_tk)
+etiqueta_personaje.place(x=anCuarto//2-70, y=alPanta//2 - 55)  # Colocar la etiqueta en la esquina superior izquierda de marco_1
+
+# Función para controlar el movimiento del personaje
+def mover_personaje(event):
+    x, y = etiqueta_personaje.place_info().get('x'), etiqueta_personaje.place_info().get('y')
+    if event.keysym == "w":
+        etiqueta_personaje.place(x=x, y=int(y) - 10)  # Mover hacia arriba
+    elif event.keysym == "a":
+        etiqueta_personaje.place(x=int(x) - 10, y=y)  # Mover hacia la izquierda
+    elif event.keysym == "s":
+        etiqueta_personaje.place(x=x, y=int(y) + 10)  # Mover hacia abajo
+    elif event.keysym == "d":
+        etiqueta_personaje.place(x=int(x) + 10, y=y)  # Mover hacia la derecha
+
+# Vincular las teclas correspondientes al movimiento del personaje
+ventana.bind("<KeyPress-w>", mover_personaje)
+ventana.bind("<KeyPress-a>", mover_personaje)
+ventana.bind("<KeyPress-s>", mover_personaje)
+ventana.bind("<KeyPress-d>", mover_personaje)
+
+
 ###########################################################################
 #                               Grafico
 #############################################################################
@@ -181,7 +216,7 @@ def actualizar_tabla():
     tabla.delete(*tabla.get_children())
     
     # Agregar los datos a la tabla
-    for i, (distancia, trabajo) in enumerate(datos_grafico, start=1):
+    for i, (distancia, trabajo) in enumerate(datos_grafico, start=1):   
         tabla.insert("", "end", text=str(i), values=(distancia, trabajo))
 
 ########################################################################
@@ -230,5 +265,10 @@ label_resultado = tk.Label(marco_3, text="")
 label_resultado.pack()
 
 
+
+# Vincular las teclas correspondientes al movimiento del personaje
+ventana.bind("<Key>", mover_personaje)
+# Darle el enfoque a la ventana para recibir eventos de teclado
+ventana.focus_set()
 # Iniciar el bucle de eventos
 ventana.mainloop()
