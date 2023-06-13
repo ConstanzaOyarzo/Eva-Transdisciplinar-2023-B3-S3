@@ -32,21 +32,27 @@ marco_4.grid(row=1, column=1)
 figura = Figure(figsize=(5, 4), dpi=100)
 grafico = figura.add_subplot(111)
 
-# Crear el Treeview (tabla)
-tabla = ttk.Treeview(marco_4)
+# Crear el ScrollableFrame para la tabla
+scrollable_frame = tk.Frame(marco_4)
+scrollable_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+# Crear la tabla dentro del ScrollableFrame
+tabla = ttk.Treeview(scrollable_frame)
 tabla.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
 # Definir las columnas de la tabla
-tabla['columns'] = ("Fuerza", "Distancia", "Trabajo")
+tabla['columns'] = ("N°", "Fuerza", "Distancia", "Trabajo")
 
 # Formato de las columnas
 tabla.column("#0", width=0, stretch=tk.NO)
+tabla.column("N°", width=50, anchor=tk.CENTER)
 tabla.column("Fuerza", width=100, anchor=tk.CENTER)
 tabla.column("Distancia", width=100, anchor=tk.CENTER)
 tabla.column("Trabajo", width=100, anchor=tk.CENTER)
 
 # Encabezados de las columnas
 tabla.heading("#0", text="", anchor=tk.CENTER)
+tabla.heading("N°", text="N°", anchor=tk.CENTER)
 tabla.heading("Fuerza", text="Fuerza (N)", anchor=tk.CENTER)
 tabla.heading("Distancia", text="Distancia (m)", anchor=tk.CENTER)
 tabla.heading("Trabajo", text="Trabajo (J)", anchor=tk.CENTER)
@@ -125,7 +131,13 @@ def actualizar_tabla():
     
     # Agregar los datos a la tabla
     for i, (fuerza, distancia, trabajo) in enumerate(datos_grafico, start=1):
-        tabla.insert("", "end", text=str(i), values=(fuerza, distancia, trabajo))
+        tabla.insert("", "end", text=str(i), values=(i, fuerza, distancia, trabajo))
+
+# Configurar el desplazamiento en el ScrollableFrame
+scrollbar = ttk.Scrollbar(scrollable_frame, orient="vertical", command=tabla.yview)
+tabla.configure(yscrollcommand=scrollbar.set)
+scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
 # Iniciar el bucle de eventos
 ventana.mainloop()
+
