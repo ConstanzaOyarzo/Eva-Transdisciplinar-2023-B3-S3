@@ -106,7 +106,7 @@ def actualizar_grafico_tabla():
     
     # Crear el nuevo gráfico con los datos almacenados
     fuerzas, distancias, trabajos = zip(*datos_grafico)
-    grafico.plot(distancias, fuerzas)
+    grafico.plot(distancias, fuerzas, marker='o', linestyle='-')
     grafico.set_xlabel("Distancia (m)")
     grafico.set_ylabel("Fuerza (N)")
     grafico.set_title("Gráfico de Trabajo Mecánico")
