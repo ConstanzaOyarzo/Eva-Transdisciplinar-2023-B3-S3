@@ -1,0 +1,282 @@
+import tkinter as tk
+from tkinter import ttk
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from PIL import Image, ImageTk
+
+# Crear la ventana principal
+ventana = tk.Tk()
+
+# Obtener el tamaño de la pantalla
+anPanta = ventana.winfo_screenwidth()
+alPanta = ventana.winfo_screenheight()
+
+#mitad
+anCuarto = anPanta // 2
+alCuarto = alPanta // 2
+
+# Crear los marcos para cada cuarto de la pantalla
+marco_1 = tk.Frame(ventana, width=anCuarto,height=alCuarto, bg='#CC99FF')
+marco_2 = tk.Frame(ventana, width=anCuarto, height=alCuarto, bg = 'blue')
+marco_3 = tk.Frame(ventana, width=anCuarto, height=alCuarto, bg='#99CCFF')
+marco_4 = tk.Frame(ventana, width=anCuarto, height=alCuarto, bg='#FFFF99')
+
+# Colocar los marcos en la ventana
+marco_1.grid(row=0, column=0)
+marco_2.grid(row=0, column=1)
+marco_3.grid(row=1, column=0)
+marco_4.grid(row=1, column=1)
+
+
+########################################################################
+#                               Caja
+########################################################################
+
+class GFG:
+    def __init__(self, marco=None): # self se utiliza para acceder y asignar atributos específicos a dicha instancia.
+        self.marco_1 = marco
+
+        # coordenadas iniciales
+        self.x = 0
+        self.y = 0
+
+        # crear rectangulo en la esquina inferior izquierda
+        self.rectangle = tk.Frame(self.marco_1, width=50, height=50, bg='#683343')
+        self.rectangle.pack()
+
+        # flag para indicar si se debe mover o no
+        self.move_enabled = False
+
+    def movimiento(self):
+        if self.move_enabled:
+            # Obtener las dimensiones del marco
+            ancho_marco = self.marco_1.winfo_width()
+            alto_marco = self.marco_1.winfo_height()
+
+            # Calcular las nuevas coordenadas
+            nueva_x = self.rectangle.winfo_x() + self.x
+            nueva_y = self.rectangle.winfo_y() + self.y
+
+            # Verificar los límites del rectángulo
+            if 0 <= nueva_x <= ancho_marco - self.rectangle.winfo_width():
+                if 0 <= nueva_y <= alto_marco - self.rectangle.winfo_height():
+                    self.rectangle.place(x=nueva_x, y=nueva_y)
+
+            self.move_enabled = False
+        self.marco_1.after(1, self.movimiento)
+
+
+# Crear instancia de GFG dentro del marco 1
+gfg = GFG(marco_1)
+
+# Establecer la posición inicial del rectángulo en la esquina inferior izquierda
+gfg.rectangle.place(x=anPanta//2//2, y=alPanta//2 - 55)
+
+
+############################################################################
+#                               Personaje
+############################################################################
+class GFG:
+    def __init__(self, imaP=None):
+        self.imaP_1 = imaP
+        self.x = 0
+        self.y = 0
+
+        # Cargar la imagen del personaje
+        self.imaP = Image.open("cosa.png")
+        self.imaP = self.imaP.resize((50, 50))  # Ajustar el tamaño de la imagen
+        self.imaP = self.imaP.convert("RGB")  # Convertir a formato RGB (sin transparencia)
+        self.imaP_tk = ImageTk.PhotoImage(self.imaP)
+
+        # Crear una etiqueta para mostrar la imagen del personaje
+        self.posicion_i = tk.Label(self.imaP_1, image=self.imaP_tk)
+        self.posicion_i.place(x=anCuarto//2-70, y=alPanta//2 - 55)  # Colocar la etiqueta en la esquina superior izquierda de imaP_1
+        self.move_enabled = False
+
+        # Función para controlar el movimiento del personaje
+    def movimiento(self):
+        if self.move_enabled:
+            # Obtener las dimensiones del marco
+            ancho_marco = self.imaP_1.winfo_width()
+            alto_marco = self.imaP_1.winfo_height()
+
+            # Calcular las nuevas coordenadas
+            nueva_x = self.posicion_i.winfo_x() + self.x
+            nueva_y = self.posicion_i.winfo_y() + self.y
+
+            # Verificar los límites del rectángulo
+            if 0 <= nueva_x <= ancho_marco - self.posicion_i.winfo_width():
+                if 0 <= nueva_y <= alto_marco - self.posicion_i.winfo_height():
+                    self.posicion_i.place(x=nueva_x, y=nueva_y)
+
+        self.move_enabled = False
+        self.imaP_1.after(1, self.movimiento)
+
+    # movmiento a la izquierda
+    def izquierda(self, event):
+        self.x = -5
+        self.y = 0
+        self.move_enabled = True
+
+    # movimiento a la derecha
+    def derecha(self, event):
+        self.x = 5
+        self.y = 0
+        self.move_enabled = True
+
+    # movimiento hacia arriba
+    def arriba(self, event):
+        self.x = 0
+        self.y = -5
+        self.move_enabled = True
+
+    # movimiento hacia abajo
+    def abajo(self, event):
+        self.x = 0
+        self.y = 5
+        self.move_enabled = True
+
+    # movimiento diagonal arriba-derecha
+    def diagonal_arriba_derecha(self, event):
+        self.x = 5
+        self.y = -5
+        self.move_enabled = True
+
+    # movimiento diagonal arriba-izquierda
+    def diagonal_arriba_izquierda(self, event):
+        self.x = -5
+        self.y = -5
+        self.move_enabled = True
+
+# Crear una instancia de la clase GFG
+gfg = GFG(marco_1)
+
+# Enlazar los eventos de teclado a los métodos de movimiento
+ventana.bind("<KeyPress-w>", lambda e: gfg.arriba(e))
+ventana.bind("<KeyPress-a>", lambda e: gfg.izquierda(e))
+ventana.bind("<KeyPress-s>", lambda e: gfg.abajo(e))
+ventana.bind("<KeyPress-d>", lambda e: gfg.derecha (e))
+ventana.bind("<KeyPress-e>", lambda e: gfg.diagonal_arriba_derecha(e))
+ventana.bind("<KeyPress-q>", lambda e: gfg.diagonal_arriba_izquierda(e))
+ventana.after(0, gfg.movimiento)
+
+###########################################################################
+#                               Grafico
+#############################################################################
+
+# Calcular el tamaño de la figura en relación con el marco
+figura = Figure(figsize=(anPanta // 2 / 100, alPanta // 2 / 100), dpi=100)
+grafico = figura.add_subplot(111)
+
+# Crear el lienzo para mostrar el gráfico en el marco_2
+canvas = FigureCanvasTkAgg(figura, master=marco_2)
+canvas.draw()
+canvas.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+# Lista para almacenar los datos del gráfico y la tabla
+datos_grafico = []
+
+
+# Función para actualizar el gráfico y la tabla
+def actualizar_grafico_tabla():
+    # Limpiar el gráfico anterior
+    grafico.clear()
+    
+    # Crear el nuevo gráfico con los datos almacenados
+    distancias, trabajos = zip(*datos_grafico)
+    grafico.plot(distancias, trabajos)
+    grafico.set_xlabel("Distancia (m)")
+    grafico.set_ylabel("Trabajo (J)")
+    grafico.set_title("Gráfico de Trabajo Mecánico")
+    grafico.grid(True)
+    
+    # Actualizar el gráfico en la interfaz
+    canvas.draw()
+    
+    # Actualizar la tabla con los datos almacenados
+    actualizar_tabla()
+
+####################################################################
+#                               Tabla
+###################################################################
+
+# Crear el Treeview (tabla)
+tabla = ttk.Treeview(marco_4)
+tabla.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+# Definir las columnas de la tabla
+tabla['columns'] = ("Distancia", "Trabajo")
+
+# Formato de las columnas
+tabla.column("#0", width= anCuarto//3, stretch=tk.NO)
+tabla.column("Distancia", width=anCuarto//3, anchor=tk.CENTER)
+tabla.column("Trabajo", width=anCuarto//3, anchor=tk.CENTER)
+
+# Encabezados de las columnas
+tabla.heading("#0", text="", anchor=tk.CENTER)
+tabla.heading("Distancia", text="Distancia (m)", anchor=tk.CENTER)
+tabla.heading("Trabajo", text="Trabajo (J)", anchor=tk.CENTER)
+
+
+# Función para actualizar la tabla con los datos almacenados
+def actualizar_tabla():
+    # Limpiar los datos anteriores de la tabla
+    tabla.delete(*tabla.get_children())
+    
+    # Agregar los datos a la tabla
+    for i, (distancia, trabajo) in enumerate(datos_grafico, start=1):   
+        tabla.insert("", "end", text=str(i), values=(distancia, trabajo))
+
+########################################################################
+#                               Calculo
+######################################################################
+
+# Crear los widgets para ingresar los datos
+label_fuerza = tk.Label(marco_3, text="Fuerza (N):")
+label_fuerza.pack()
+
+entry_fuerza = tk.Entry(marco_3, width=anCuarto//9, justify="center")
+entry_fuerza.pack()
+
+label_distancia = tk.Label(marco_3, text="Distancia (m):")
+label_distancia.pack()
+
+entry_distancia = tk.Entry(marco_3, width=anCuarto//9, justify="center")
+entry_distancia.pack()
+
+
+# Función para calcular el trabajo
+def calcular_trabajo():
+    try:
+        fuerza = float(entry_fuerza.get())
+        distancia = float(entry_distancia.get())
+        
+        trabajo = fuerza * distancia
+        
+        label_resultado.config(text=f"El trabajo es: {trabajo} J")
+        
+        # Agregar los datos a la lista
+        datos_grafico.append((distancia, trabajo))
+        
+        # Actualizar el gráfico y la tabla
+        actualizar_grafico_tabla()
+        
+    except ValueError:
+        label_resultado.config(text="Ingrese valores numéricos válidos")
+
+# Botón para calcular el trabajo
+btn_calcular = tk.Button(marco_3, text="Calcular", command=calcular_trabajo)
+btn_calcular.pack()
+
+# Etiqueta para mostrar el resultado
+label_resultado = tk.Label(marco_3, text="")
+label_resultado.pack()
+
+
+
+# Vincular las teclas correspondientes al movimiento del personaje
+
+# Darle el enfoque a la ventana para recibir eventos de teclado
+ventana.focus_set()
+# Iniciar el bucle de eventos
+ventana.mainloop()
