@@ -1,5 +1,6 @@
-Trabajo mecanico 
-En física el  trabajo mecánico (o simplemente trabajo) a la acción de una fuerza sobre un cuerpo en reposo o movimiento, de modo tal que produzca un desplazamiento en el cuerpo proporcional a la energía invertida en la fuerza que lo mueve. Dicho de otro modo, el trabajo mecánico es la cantidad de energía transferida a un cuerpo por una fuerza que actúa sobre él.
+TRABAJO MECANICO 
+
+En física el concepto de trabajo mecánico se como la acción de una fuerza sobre un cuerpo en reposo o movimiento, de modo tal que produzca un desplazamiento en el cuerpo proporcional a la energía invertida en la fuerza que lo mueve, esto quiere decir que el trabajo mecánico es la cantidad de energía transferida a un cuerpo por una fuerza que actúa sobre él.
 El trabajo mecánico es una magnitud escalar, que se suele medir en el Sistema Internacional (SI) a través de joules o julios (J) y se representa con la letra W (del inglés Work, “Trabajo”). Además, se suele hablar de trabajo positivo o negativo dependiendo de si la fuerza le transfiere energía al objeto (trabajo positivo) o si se la resta (trabajo negativo). Así, por ejemplo, quien arroja una pelota realiza un trabajo positivo, mientras que quien la ataja realiza un trabajo negativo.
 Características del trabajo mecánico
 Es una magnitud escalar, que se mide a través de julios (o sea, kilogramos por metro cuadrado entre segundo cuadrado) y se representa con la letra W.
