@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import re
 
 # Crear la ventana principal
 ventana = tk.Tk()
@@ -41,18 +42,18 @@ tabla = ttk.Treeview(scrollable_frame)
 tabla.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
 # Definir las columnas de la tabla
-tabla['columns'] = ("N°", "Fuerza", "Distancia", "Trabajo")
+tabla['columns'] = ("No.", "Fuerza", "Distancia", "Trabajo")
 
 # Formato de las columnas
 tabla.column("#0", width=0, stretch=tk.NO)
-tabla.column("N°", width=50, anchor=tk.CENTER)
+tabla.column("No.", width=50, anchor=tk.CENTER)
 tabla.column("Fuerza", width=100, anchor=tk.CENTER)
 tabla.column("Distancia", width=100, anchor=tk.CENTER)
 tabla.column("Trabajo", width=100, anchor=tk.CENTER)
 
 # Encabezados de las columnas
 tabla.heading("#0", text="", anchor=tk.CENTER)
-tabla.heading("N°", text="N°", anchor=tk.CENTER)
+tabla.heading("No.", text="No.", anchor=tk.CENTER)
 tabla.heading("Fuerza", text="Fuerza (N)", anchor=tk.CENTER)
 tabla.heading("Distancia", text="Distancia (m)", anchor=tk.CENTER)
 tabla.heading("Trabajo", text="Trabajo (J)", anchor=tk.CENTER)
@@ -69,6 +70,16 @@ label_distancia.pack()
 
 entry_distancia = tk.Entry(marco_3)
 entry_distancia.pack()
+
+# Función para validar la entrada
+def validar_entrada(text):
+    return re.match(r'^\d*\.?\d*$', text) is not None
+
+# Asociar la función de validación a los campos de entrada
+vcmd = (ventana.register(validar_entrada), '%P')
+
+entry_fuerza.config(validate="key", validatecommand=vcmd)
+entry_distancia.config(validate="key", validatecommand=vcmd)
 
 # Función para calcular el trabajo
 def calcular_trabajo():
