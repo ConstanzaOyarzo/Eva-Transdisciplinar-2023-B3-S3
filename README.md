@@ -45,22 +45,20 @@ W = F * d * cos(θ), donde F es la fuerza aplicada, d es el desplazamiento y θ 
 
 ### Descripción de las herramientas utilizadas
 
-- tkinter: Es un módulo de Python que proporciona clases y funciones para crear interfaces gráficas de usuario. En este código, se utiliza para crear y administrar la
-ventana principal, marcos, etiquetas, botones, entradas y otros elementos de la interfaz.
+- tkinter: Se utiliza para crear la interfaz gráficas de usuario, crear y administrar la
+ventana principal, marcos, etiquetas, botones, entradas y otros elementos.
 
-- matplotlib: Es una biblioteca de Python ampliamente utilizada para crear visualizaciones y gráficos. En este código, se utiliza para crear un gráfico de trabajo mecánico.
+- matplotlib: Se utiliza para crear un gráfico de trabajo mecánico.
 
-- PIL: Es el módulo Pillow de Python, que permite abrir, manipular y guardar imágenes en diferentes formatos. En este código, se utiliza para cargar una imagen del personaje
-en la interfaz.
+- PIL: Se utiliza para cargar una imagen del personaje en la interfaz.
 
-- re: Es un módulo de Python para trabajar con expresiones regulares. En este código, se utiliza para validar la entrada de datos en los campos de fuerza y distancia,
-asegurándose de que solo se ingresen valores numéricos.
+- re: Se utiliza para validar la entrada de datos en los campos de fuerza y distancia, asegurándose de que solo se ingresen valores numéricos.
 
-- ttk: Es un submódulo de Tkinter que proporciona widgets temáticamente consistentes y mejorados en comparación con los widgets estándar de Tkinter.
+- ttk: Se utiliza para crear y manejar los datos dentro de la tabla del marco 4.
 
-- Figure y FigureCanvasTkAgg: Son clases proporcionadas por Matplotlib que se utilizan para crear y mostrar gráficos en una interfaz Tkinter.
+- Figure y FigureCanvasTkAgg: Clases especifica de Matplotlib que se utilizan para crear, mostrar gráficos en una interfaz Tkinter y que el grafico tenga una buena calidad de imagen.
 
-- Image y ImageTk: Son clases proporcionadas por el módulo PIL (Pillow) que se utilizan para cargar y mostrar imágenes en la interfaz Tkinter.
+- Image y ImageTk: Son clases proporcionadas por la libreria PIL (Pillow) que se utilizan para cargar y mostrar imágenes en la interfaz Tkinter.
 
 ### Guia de instalación
 
