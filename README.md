@@ -4,7 +4,7 @@
 
 ## Descripción
 
-Este proyecto tratará sobre la creacion de una interfaz grafica, la cual nos entregra informcacion de los que es y la formula del trabajo mecanico.
+Este proyecto tratará sobre la creacion de una interfaz grafica, la cual nos entregra informacion de los que es y la formula del trabajo mecanico.
 Lo que nosotros proponemos en este trabajo es un metodo más sencillo con mecanicas bastante sencillas, lo que signifca que cualquier usuario puede entenderlo y 
 por ende trabajar con el.
 
