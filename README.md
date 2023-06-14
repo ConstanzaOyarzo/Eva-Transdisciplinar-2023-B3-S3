@@ -1,16 +1,39 @@
-TRABAJO MECANICO 
 
-En física el concepto de trabajo mecánico se como la acción de una fuerza sobre un cuerpo en reposo o movimiento, de modo tal que produzca un desplazamiento en el cuerpo proporcional a la energía invertida en la fuerza que lo mueve, esto quiere decir que el trabajo mecánico es la cantidad de energía transferida a un cuerpo por una fuerza que actúa sobre él.
-El trabajo mecánico es una magnitud escalar, que se suele medir en el Sistema Internacional (SI) a través de joules o julios (J) y se representa con la letra W (del inglés Work, “Trabajo”). Además, se suele hablar de trabajo positivo o negativo dependiendo de si la fuerza le transfiere energía al objeto (trabajo positivo) o si se la resta (trabajo negativo). Así, por ejemplo, quien arroja una pelota realiza un trabajo positivo, mientras que quien la ataja realiza un trabajo negativo.
-Características del trabajo mecánico
-Es una magnitud escalar, que se mide a través de julios (o sea, kilogramos por metro cuadrado entre segundo cuadrado) y se representa con la letra W.
-Depende directamente de la fuerza que lo ocasiona, de modo tal que para existir trabajo mecánico en un cuerpo, debe haber una fuerza mecánica aplicada sobre él a lo largo de una trayectoria definida.
-En el lenguaje corriente, se emplea el término “trabajo” para definir a aquella actividad mecánica cuya realización consume una cantidad de energía.
-La transferencia de calor (energía calórica) no se considera una forma de trabajo, a pesar de que consista en una transferencia de energía.
-Fórmula del trabajo mecánico
-La fórmula más sencilla para calcular el trabajo de un cuerpo que es movido por una fuerza suele ser la siguiente:
-W = F x d
-donde W es el trabajo realizado, F la fuerza que actúa sobre el cuerpo y D es la distancia del desplazamiento sufrido por el cuerpo.
-Sin embargo, fuerza y distancia suelen considerarse magnitudes vectoriales, que requieren de una orientación determinada en el espacio. Así, la fórmula anterior puede reformularse para incluir dicha orientación, de la siguiente manera:
-W = F x d x cos𝛂
-donde el coseno de alfa (cos𝛂) determina el ángulo que forman la dirección en que la fuerza se aplica y la dirección en que el objeto se mueve como resultado.
+# B3 S3
+
+
+## Descripción
+
+Este proyecto tratará sobre la creacion de una interfaz grafica, la cual nos entregra informcacion de los que es y la formula del trabajo mecanico.
+Lo que nosotros proponemos en este trabajo es un metodo más sencillo con mecanicas bastante sencillas, lo que signifca que cualquier usuario puede entenderlo y 
+por ende trabajar con el.
+
+## Trabajo mecanico
+
+Se le llama trabajo mecanico a la fuerza ejercida sobre un cuerpo, ya sea que este se cuetentre en reposo o en movimiento
+expresado de otra manera, el trabajo mecánico es la cantidad de energía transferida a un cuerpo por una fuerza que actúa sobre él.
+Este trabajo se mide en la escala internacional (SI), es decir, se mide en Joules (J) y es representado por una "w" pues viene de la palabra work (trabajo)
+
+Este trabajo se puede trabajar en positivo (cuando la fuerza/energía se transfiere al objeto), que es cuando alguien ejerse/transfiere algun tipo de energia al objeto
+o en su defecto negativa (cuando se le resta fuerza/energia), cuando alguien no ejerse/transfiere energia al objeto dejando que de apoco deje de tener movimiento.
+
+####Algunas de sus caracteristicas son:
+
+- Es una magnitud escalar, que se mide a través de julios (o sea, kilogramos por metro cuadrado entre segundo cuadrado) y se representa con la letra W.
+- La transferencia de calor (energía calórica) no se considera una forma de trabajo, a pesar de que consista en una transferencia de energía.
+- En el lenguaje corriente, se emplea el término “trabajo” para definir a aquella actividad mecánica cuya realización consume una cantidad de energía.
+- El cuerpo gana energía => Ef > Ei  => Trabajo positivo => Se realiza trabajo sobre el cuerpo.
+- ∆E, Ef, Ei: Incremento de energía, energía final y energía inicial del proceso respectivamente. Su unidad de medida en el Sistema Internacional (S.I.) es el Julio (J)
+
+####Caracteristica y tipos de energía
+
+tipos de energia:
+- Energía interna: Debida a la composición y al estado del cuerpo
+- Energía cinética: Debida al estado de movimiento del cuerpo
+- Energía potencial: Debida a la posición que ocupa un cuerpo en un campo de fuerzas
+
+caracteristicas:
+- La cantidad de energía se conserva en cualquier proceso. Permanece constante.
+- Es necesaria para que el sistema pueda realizar transformaciones ya sea sobre sí mismos o sobre otros cuerpos.
+- Existen diversos tipos de energía. Se puede convertir de un tipo a otro.
+
