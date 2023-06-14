@@ -8,6 +8,15 @@ Este proyecto tratará sobre la creacion de una interfaz grafica, la cual nos en
 Lo que nosotros proponemos en este trabajo es un metodo más sencillo con mecanicas bastante sencillas, lo que signifca que cualquier usuario puede entenderlo y 
 por ende trabajar con el.
 
+## Trabajo mecanico
+
+Se le llama trabajo mecanico a la fuerza ejercida sobre un cuerpo, ya sea que este se cuetentre en reposo o en movimiento
+expresado de otra manera, el trabajo mecánico es la cantidad de energía transferida a un cuerpo por una fuerza que actúa sobre él.
+Este trabajo se mide en la escala internacional (SI), es decir, se mide en Joules (J) y es representado por una "w" pues viene de la palabra work (trabajo).
+
+Este trabajo se puede trabajar en positivo (cuando la fuerza/energía se transfiere al objeto), que es cuando alguien ejerse/transfiere algun tipo de energia al objeto
+o en su defecto negativa (cuando se le resta fuerza/energia), cuando alguien no ejerse/transfiere energia al objeto dejando que de apoco deje de tener movimiento.
+
 Trabajo mecanico 
 En física el  trabajo mecánico (o simplemente trabajo) a la acción de una fuerza sobre un cuerpo en reposo o movimiento, de modo tal que produzca un desplazamiento en el cuerpo proporcional a la energía invertida en la fuerza que lo mueve. Dicho de otro modo, el trabajo mecánico es la cantidad de energía transferida a un cuerpo por una fuerza que actúa sobre él.
 El trabajo mecánico es una magnitud escalar, que se suele medir en el Sistema Internacional (SI) a través de joules o julios (J) y se representa con la letra W (del inglés Work, “Trabajo”). Además, se suele hablar de trabajo positivo o negativo dependiendo de si la fuerza le transfiere energía al objeto (trabajo positivo) o si se la resta (trabajo negativo). Así, por ejemplo, quien arroja una pelota realiza un trabajo positivo, mientras que quien la ataja realiza un trabajo negativo.
