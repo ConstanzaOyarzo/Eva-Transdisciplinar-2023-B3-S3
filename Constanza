@@ -180,7 +180,7 @@ def actualizar_grafico():
     grafico.set_xlabel("Distancia (m)")
     grafico.set_ylabel("Fuerza (N)")
     grafico.set_title("Gráfico de Trabajo Mecánico")
-    grafico.grid(False)
+    grafico.grid(True)
     canvas.draw()
 
 ############################################################################
