@@ -28,12 +28,12 @@ o en su defecto negativa (cuando se le resta fuerza/energia), cuando alguien no 
 ####Caracteristica y tipos de energía
 
 tipos de energia:
--Energía interna: Debida a la composición y al estado del cuerpo
--Energía cinética: Debida al estado de movimiento del cuerpo
--Energía potencial: Debida a la posición que ocupa un cuerpo en un campo de fuerzas
+- Energía interna: Debida a la composición y al estado del cuerpo
+- Energía cinética: Debida al estado de movimiento del cuerpo
+- Energía potencial: Debida a la posición que ocupa un cuerpo en un campo de fuerzas
 
 caracteristicas:
--La cantidad de energía se conserva en cualquier proceso. Permanece constante.
--Es necesaria para que el sistema pueda realizar transformaciones ya sea sobre sí mismos o sobre otros cuerpos.
--Existen diversos tipos de energía. Se puede convertir de un tipo a otro.
+- La cantidad de energía se conserva en cualquier proceso. Permanece constante.
+- Es necesaria para que el sistema pueda realizar transformaciones ya sea sobre sí mismos o sobre otros cuerpos.
+- Existen diversos tipos de energía. Se puede convertir de un tipo a otro.
 
