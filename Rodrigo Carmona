@@ -32,7 +32,7 @@ marco_4.grid(row=1, column=1)
 #                               Caja
 ########################################################################
 
-class GFG:
+class caja:
     def __init__(self, marco=None): # self se utiliza para acceder y asignar atributos específicos a dicha instancia.
         self.marco_1 = marco
 
@@ -67,7 +67,7 @@ class GFG:
 
 
 # Crear instancia de GFG dentro del marco 1
-gfg = GFG(marco_1)
+gfg = caja(marco_1)
 
 # Establecer la posición inicial del rectángulo en la esquina inferior izquierda
 gfg.rectangle.place(x=anPanta//2//2, y=alPanta//2 - 55)
@@ -76,7 +76,7 @@ gfg.rectangle.place(x=anPanta//2//2, y=alPanta//2 - 55)
 ############################################################################
 #                               Personaje
 ############################################################################
-class GFG:
+class personaje:
     def __init__(self, imaP=None):
         self.imaP_1 = imaP
         self.x = 0
@@ -152,7 +152,7 @@ class GFG:
         self.move_enabled = True
 
 # Crear una instancia de la clase GFG
-gfg = GFG(marco_1)
+gfg = personaje(marco_1)
 
 # Enlazar los eventos de teclado a los métodos de movimiento
 ventana.bind("<KeyPress-w>", lambda e: gfg.arriba(e))
