@@ -17,7 +17,7 @@ Este trabajo se mide en la escala internacional (SI), es decir, se mide en Joule
 Este trabajo se puede trabajar en positivo (cuando la fuerza/energía se transfiere al objeto), que es cuando alguien ejerse/transfiere algun tipo de energia al objeto
 o en su defecto negativa (cuando se le resta fuerza/energia), cuando alguien no ejerse/transfiere energia al objeto dejando que de apoco deje de tener movimiento.
 
-####Algunas de sus caracteristicas son:
+#### Algunas de sus caracteristicas son:
 
 - Es una magnitud escalar, que se mide a través de julios (o sea, kilogramos por metro cuadrado entre segundo cuadrado) y se representa con la letra W.
 - La transferencia de calor (energía calórica) no se considera una forma de trabajo, a pesar de que consista en una transferencia de energía.
@@ -25,7 +25,7 @@ o en su defecto negativa (cuando se le resta fuerza/energia), cuando alguien no 
 - El cuerpo gana energía => Ef > Ei  => Trabajo positivo => Se realiza trabajo sobre el cuerpo.
 - ∆E, Ef, Ei: Incremento de energía, energía final y energía inicial del proceso respectivamente. Su unidad de medida en el Sistema Internacional (S.I.) es el Julio (J)
 
-####Caracteristica y tipos de energía
+#### Caracteristica y tipos de energía
 
 tipos de energia:
 - Energía interna: Debida a la composición y al estado del cuerpo
