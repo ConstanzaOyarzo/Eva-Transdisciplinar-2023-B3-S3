@@ -8,7 +8,7 @@ Este proyecto tratará sobre la creacion de una interfaz grafica, la cual nos en
 cómo funciona su formula.
 
 En esta simulación se propone un metodo más sencillo para calcular el trabajo mecanico, utilizando una Fuerza y distancia en la misma
-direccion, por lo cual el el coseno en esta simulacion se considera como 1.
+direccion, por lo cual el coseno en esta simulacion se considera como 1.
 
 ## Trabajo mecanico
 
