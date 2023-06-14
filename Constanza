@@ -34,7 +34,7 @@ marco_4.grid(row=1, column=1)
 ############################################################################
 
 class Cajas:
-    def __init__(self, marco_1):
+    def __init__(self, marco_1): # self se utiliza para acceder y asignar atributos específicos a dicha instancia.
 
         # crea el cuadrado dentro del marco 1
         self.box = tk.Frame(marco_1, width=50, height=50, bg='#683343')
@@ -87,7 +87,7 @@ class Personajes:
 
 
         # Función para controlar el movimiento del personaje
-    def movimiento(self):
+    def limites(self):
         if self.move_enabled:
             # Obtener las dimensiones del marco
             ancho_marco = self.imaP_1.winfo_width()
@@ -103,7 +103,7 @@ class Personajes:
                     self.etiqueta.place(x=nueva_x, y=nueva_y)
 
         self.move_enabled = False
-        self.imaP_1.after(1, self.movimiento)
+        self.imaP_1.after(1, self.limites)
 
 
     # movmiento a la izquierda
@@ -142,7 +142,7 @@ class Personajes:
         self.y = -5
         self.move_enabled = True
 
-# Crear una instancia de la clase GFG
+# Crear una instancia de la clase Personajes
 per1 = Personajes(marco_1)
 
 # Enlazar los eventos de teclado a los métodos de movimiento
@@ -152,7 +152,7 @@ ventana.bind("<KeyPress-s>", lambda e: per1.abajo(e))
 ventana.bind("<KeyPress-d>", lambda e: per1.derecha (e))
 ventana.bind("<KeyPress-e>", lambda e: per1.diagonal_arriba_derecha(e))
 ventana.bind("<KeyPress-q>", lambda e: per1.diagonal_arriba_izquierda(e))
-ventana.after(0, per1.movimiento)
+ventana.after(0, per1.limites)
 
 
 
@@ -180,7 +180,7 @@ def actualizar_grafico():
     grafico.set_xlabel("Distancia (m)")
     grafico.set_ylabel("Fuerza (N)")
     grafico.set_title("Gráfico de Trabajo Mecánico")
-    grafico.grid(True)
+    grafico.grid(False)
     canvas.draw()
 
 ############################################################################
