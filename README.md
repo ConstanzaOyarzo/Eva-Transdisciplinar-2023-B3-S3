@@ -1,5 +1,12 @@
+
 # B3 S3
 
+
+## Descripción
+
+Este proyecto tratará sobre la creacion de una interfaz grafica, la cual nos entregra informcacion de los que es y la formula del trabajo mecanico.
+Lo que nosotros proponemos en este trabajo es un metodo más sencillo con mecanicas bastante sencillas, lo que signifca que cualquier usuario puede entenderlo y 
+por ende trabajar con el.
 
 Trabajo mecanico 
 En física el  trabajo mecánico (o simplemente trabajo) a la acción de una fuerza sobre un cuerpo en reposo o movimiento, de modo tal que produzca un desplazamiento en el cuerpo proporcional a la energía invertida en la fuerza que lo mueve. Dicho de otro modo, el trabajo mecánico es la cantidad de energía transferida a un cuerpo por una fuerza que actúa sobre él.
