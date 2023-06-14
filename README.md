@@ -4,14 +4,18 @@
 
 ## Descripción
 
-Este proyecto tratará sobre la creacion de una interfaz grafica, la cual nos entregra informacion de los que es y la formula del trabajo mecanico.
-Lo que nosotros proponemos en este trabajo es un metodo más sencillo con mecanicas bastante sencillas, lo que signifca que cualquier usuario puede entenderlo y 
-por ende trabajar con el.
+Este proyecto tratará sobre la creacion de una interfaz grafica, la cual nos entregra informacion de los que es el trabajo mecanico y
+cómo funciona su formula.
+
+En esta simulación se propone un metodo más sencillo para calcular el trabajo mecanico, utilizando una Fuerza y distancia en la misma
+direccion, por lo cual el el coseno en esta simulacion se considera como 1.
 
 ## Trabajo mecanico
 
-En resumen, el trabajo mecánico es la transferencia de energía a través de una fuerza aplicada a un cuerpo. Se mide en julios y puede ser positivo o negativo dependiendo de si
-se transfiere o se resta energía al objeto. La energía se conserva en cualquier proceso y es necesaria para realizar transformaciones en los sistemas. Existen diferentes
+En resumen, el trabajo mecánico es la transferencia de energía a través de una fuerza aplicada a un cuerpo. Se mide en julios y puede ser
+positivo o negativo dependiendo de si
+se transfiere o se resta energía al objeto. La energía se conserva en cualquier proceso y es necesaria para realizar transformaciones en
+los sistemas. Existen diferentes
 formas de energía y pueden convertirse de un tipo a otro.
 
 ### Breve historia asociada
