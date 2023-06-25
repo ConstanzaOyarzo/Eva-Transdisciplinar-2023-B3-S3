@@ -4,6 +4,7 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from PIL import Image, ImageTk
 import re
+import time
 
 # Crear la ventana principal
 ventana = tk.Tk()
@@ -17,7 +18,7 @@ anCuarto = anPanta // 2
 alCuarto = alPanta // 2
 
 # Crear los marcos para cada cuarto de la pantalla
-marco_1 = tk.Frame(ventana, width=anCuarto,height=alCuarto, bg='#CC99FF')
+marco_1 = tk.Frame(ventana, width=anCuarto, height=alCuarto, bg='#CC99FF')
 marco_2 = tk.Frame(ventana, width=anCuarto, height=alCuarto, bg = 'blue')
 marco_3 = tk.Frame(ventana, width=anCuarto, height=alCuarto, bg='#99CCFF')
 marco_4 = tk.Frame(ventana, width=anCuarto, height=alCuarto, bg='#FFFF99')
@@ -25,7 +26,7 @@ marco_4 = tk.Frame(ventana, width=anCuarto, height=alCuarto, bg='#FFFF99')
 # Se le asigna a cada marco una matriz y se colocan los marcos en la ventana
 marco_1.grid(row=0, column=0)
 marco_2.grid(row=0, column=1)
-marco_3.grid(row=1, column=0)
+marco_3.grid(row=1, column=0, sticky="nsew")
 marco_4.grid(row=1, column=1)
 
 
@@ -74,19 +75,46 @@ class Personajes:
         self.x = 0
         self.y = 0
 
-        # Cargar la imagen del personaje
-        self.imaP = Image.open("cosa.png").convert("RGBA")  # Convertir la imagen a modo RGBA
-        self.imaP = self.imaP.resize((50, 50))  # Ajustar el tamaño de la imagen
-        self.imaP_tk = ImageTk.PhotoImage(self.imaP)
+        self.velocidad_x = 1  # Velocidad en el eje x
+        self.direccion_x = 1  # Dirección del movimiento (1 para derecha, -1 para izquierda)
+
+        # Cargar las imágenes del personaje
+        self.sprite_images = []
+        for i in range(6):  # Suponiendo que hay 12 imágenes del personaje
+            image_path = f"c{i}.png"
+            image = Image.open(image_path).convert("RGBA")
+            image = image.resize((50, 50))  # Ajustar el tamaño de la imagen
+            self.sprite_images.append(ImageTk.PhotoImage(image))
+
+        self.current_frame = 0  # Cuadro actual de la animación
 
         # Crear una etiqueta para mostrar la imagen del personaje
-        self.etiqueta = tk.Label(self.imaP_1, image=self.imaP_tk)
-        self.etiqueta.config(image=self.imaP_tk, bg='#CC99FF')
+        self.etiqueta = tk.Label(self.imaP_1)
+        self.etiqueta.config(bg='#CC99FF')
         self.etiqueta.place(x=anCuarto//2-70, y=alPanta//2 - 55)  # Colocar la etiqueta en la esquina superior izquierda de imaP_1
+
+        # Configurar la imagen inicial del personaje
+        self.etiqueta.config(image=self.sprite_images[0])
+
         self.move_enabled = False
 
+        # Enlazar los eventos de teclado a los métodos de movimiento
+        ventana.bind("<KeyPress-a>", lambda e: self.izquierda(e))
+        ventana.bind("<KeyPress-d>", lambda e: self.derecha(e))
 
-        # Función para controlar el movimiento del personaje
+        self.limites()
+
+    def animate(self):
+        if self.move_enabled:
+            self.current_frame += 1
+            if self.current_frame >= len(self.sprite_images):
+                self.current_frame = 0
+
+            self.etiqueta.config(image=self.sprite_images[self.current_frame])
+
+        self.move_enabled = False
+        self.imaP_1.after(2, self.animate)  # Cambiar el cuadro de la animación cada 100 milisegundos
+
     def limites(self):
         if self.move_enabled:
             # Obtener las dimensiones del marco
@@ -94,7 +122,7 @@ class Personajes:
             alto_marco = self.imaP_1.winfo_height()
 
             # Calcular las nuevas coordenadas
-            nueva_x = self.etiqueta.winfo_x() + self.x
+            nueva_x = self.etiqueta.winfo_x() + (self.velocidad_x * self.direccion_x)
             nueva_y = self.etiqueta.winfo_y() + self.y
 
             # Verificar los límites del rectángulo
@@ -105,55 +133,28 @@ class Personajes:
         self.move_enabled = False
         self.imaP_1.after(1, self.limites)
 
-
-    # movmiento a la izquierda
+    # Movimiento a la izquierda
     def izquierda(self, event):
-        self.x = -5
+        self.velocidad_x = self.velocidad_x
+        self.direccion_x = -1
         self.y = 0
         self.move_enabled = True
 
-    # movimiento a la derecha
+    # Movimiento a la derecha
     def derecha(self, event):
-        self.x = 5
+        self.velocidad_x = self.velocidad_x
+        self.direccion_x = 1
         self.y = 0
         self.move_enabled = True
 
-    # movimiento hacia arriba
-    def arriba(self, event):
-        self.x = 0
-        self.y = -5
-        self.move_enabled = True
-
-    # movimiento hacia abajo
-    def abajo(self, event):
-        self.x = 0
-        self.y = 5
-        self.move_enabled = True
-
-    # movimiento diagonal arriba-derecha
-    def diagonal_arriba_derecha(self, event):
-        self.x = 5
-        self.y = -5
-        self.move_enabled = True
-
-    # movimiento diagonal arriba-izquierda
-    def diagonal_arriba_izquierda(self, event):
-        self.x = -5
-        self.y = -5
-        self.move_enabled = True
 
 # Crear una instancia de la clase Personajes
 per1 = Personajes(marco_1)
 
 # Enlazar los eventos de teclado a los métodos de movimiento
-ventana.bind("<KeyPress-w>", lambda e: per1.arriba(e))
 ventana.bind("<KeyPress-a>", lambda e: per1.izquierda(e))
-ventana.bind("<KeyPress-s>", lambda e: per1.abajo(e))
-ventana.bind("<KeyPress-d>", lambda e: per1.derecha (e))
-ventana.bind("<KeyPress-e>", lambda e: per1.diagonal_arriba_derecha(e))
-ventana.bind("<KeyPress-q>", lambda e: per1.diagonal_arriba_izquierda(e))
-ventana.after(0, per1.limites)
-
+ventana.bind("<KeyPress-d>", lambda e: per1.derecha(e))
+per1.animate()
 
 
 ############################################################################
@@ -182,6 +183,7 @@ def actualizar_grafico():
     grafico.set_title("Gráfico de Trabajo Mecánico")
     grafico.grid(True)
     canvas.draw()
+
 
 ############################################################################
 #                               Tabla
@@ -226,6 +228,7 @@ scrollbar = ttk.Scrollbar(scrollable_frame, orient="vertical", command=tabla.yvi
 tabla.configure(yscrollcommand=scrollbar.set)
 scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
+
 ############################################################################
 #                               Calculo
 ############################################################################
@@ -234,14 +237,19 @@ scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 label_fuerza = tk.Label(marco_3, text="Fuerza (N):")
 label_fuerza.pack()
 
-entry_fuerza = tk.Entry(marco_3, width=anCuarto//9, justify="center")
+entry_fuerza = tk.Entry(marco_3, justify="center")
 entry_fuerza.pack()
 
 label_distancia = tk.Label(marco_3, text="Distancia (m):")
 label_distancia.pack()
 
-entry_distancia = tk.Entry(marco_3, width=anCuarto//9, justify="center")
-entry_distancia.pack()
+label_distancia2 = tk.Label(marco_3, text="")
+label_distancia2.pack()
+
+#entry_distancia = tk.Entry(marco_3, width=anCuarto//9, justify="center")
+#entry_distancia.pack()
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Función para validar la entrada
 def validar_entrada(text):
@@ -251,13 +259,32 @@ def validar_entrada(text):
 valCom = (ventana.register(validar_entrada), '%P')
 
 entry_fuerza.config(validate="key", validatecommand=valCom)
-entry_distancia.config(validate="key", validatecommand=valCom)
+#entry_distancia.config(validate="key", validatecommand=valCom)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def actualizar_velocidad_x():
+    global nueva_velocidad
+    try:
+        nueva_velocidad = int(entry_velocidad.get())
+        per1.velocidad_x = nueva_velocidad
+    except ValueError:
+        # Manejar el caso en el que se ingrese un valor no válido
+        pass
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 # Función para calcular el trabajo
 def calcular_trabajo():
+    global nueva_velocidad
     try:
         fuerza = float(entry_fuerza.get())
-        distancia = float(entry_distancia.get())
+
+        tiempo_transcurrido = cronometro.tiempo_transcurrido()
+
+        distancia = tiempo_transcurrido * nueva_velocidad
+
+        label_distancia2.config(text=f"La distancia es: {distancia} J")
 
         trabajo = fuerza * distancia
 
@@ -272,7 +299,7 @@ def calcular_trabajo():
 
         # Limpiar los campos de entrada
         entry_fuerza.delete(0, tk.END)
-        entry_distancia.delete(0, tk.END)
+        #entry_distancia.delete(0, tk.END)
 
     except ValueError:
         label_resultado.config(text="Ingrese valores numéricos válidos")
@@ -284,6 +311,61 @@ btn_calcular.pack()
 # Etiqueta para mostrar el resultado
 label_resultado = tk.Label(marco_3, text="")
 label_resultado.pack()
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#                               Velocidad
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+label_velocidad = tk.Label(marco_3, text="Velocidad(m/s):")
+label_velocidad.pack()
+
+entry_velocidad = tk.Entry(marco_3, justify="center")
+entry_velocidad.pack()
+
+# Crear el botón para actualizar la velocidad en x
+boton_actualizar = tk.Button(marco_3, text="Actualizar", command=actualizar_velocidad_x)
+boton_actualizar.pack()
+
+# Función para validar la entrada
+entry_velocidad.config(validate="key", validatecommand=valCom)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#                               Tiempo
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+class Cronometro:
+    def __init__(self, ventana):
+        self.ventana = ventana
+        self.iniciado = False
+        self.tiempo_inicial = 0
+        self.etiqueta_tiempo = tk.Label(ventana, text="Tiempo: 0 segundos")
+        self.etiqueta_tiempo.pack()
+
+        boton = tk.Button(ventana, text="Iniciar/Detener", command=self.iniciar_detener_cronometro)
+        boton.pack()
+
+
+    def iniciar_detener_cronometro(self):
+        if not self.iniciado:
+            self.iniciado = True
+            self.tiempo_inicial = time.time()
+            self.actualizar_cronometro()
+        else:
+            self.iniciado = False
+
+    def actualizar_cronometro(self):
+        if self.iniciado:
+            tiempo_transcurrido = int(time.time() - self.tiempo_inicial)
+            self.etiqueta_tiempo.config(text=f"Tiempo: {tiempo_transcurrido} segundos")
+            self.ventana.after(1000, self.actualizar_cronometro)
+
+cronometro = Cronometro(marco_3)
+
+cronometro.etiqueta_tiempo.pack()
+
 
 # Darle el enfoque a la ventana para recibir eventos de teclado
 ventana.focus_set()
