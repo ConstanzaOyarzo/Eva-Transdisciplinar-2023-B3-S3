@@ -41,22 +41,6 @@ class Cajas:
         self.box = tk.Frame(marco_1, width=50, height=50, bg='#683343')
         self.box.pack()
 
-    def limites(self):
-
-        # Obtener las dimensiones del marco
-        ancho_marco = marco_1.winfo_width()
-        alto_marco = marco_1.winfo_height()
-
-        # Calcular las nuevas coordenadas
-        nueva_x = self.box.winfo_x()
-        nueva_y = self.box.winfo_y()
-
-        # Verificar los límites del rectángulo
-        if 0 <= nueva_x <= ancho_marco - self.box.winfo_width():
-            if 0 <= nueva_y <= alto_marco - self.box.winfo_height():
-                self.box.place(x=nueva_x, y=nueva_y)
-
-        marco_1.after(1, self.limites)
 
     def mover(self, velocidad_x, direccion_x):
         nueva_x = self.box.winfo_x() + (velocidad_x * direccion_x)
@@ -70,7 +54,6 @@ caja1 = Cajas(marco_1)
 
 # Establecer la posición inicial del cuadrado
 caja1.box.place(x=anPanta//2//2, y=alPanta//2 - 55)
-
 
 ############################################################################
 #                               Personaje
@@ -129,19 +112,34 @@ class Personajes:
             ancho_marco = self.imaP_1.winfo_width()
             alto_marco = self.imaP_1.winfo_height()
 
-            # Calcular las nuevas coordenadas
-            nueva_x = self.etiqueta.winfo_x() + (self.velocidad_x * self.direccion_x)
-            nueva_y = self.etiqueta.winfo_y() + self.y
+            # Obtener las dimensiones del personaje y la caja
+            ancho_personaje = self.etiqueta.winfo_width()
+            alto_personaje = self.etiqueta.winfo_height()
+            ancho_caja = self.caja.box.winfo_width()
+            alto_caja = self.caja.box.winfo_height()
 
-            # Verificar los límites del rectángulo
-            if 0 <= nueva_x <= ancho_marco - self.etiqueta.winfo_width():
-                if 0 <= nueva_y <= alto_marco - self.etiqueta.winfo_height():
-                    self.etiqueta.place(x=nueva_x, y=nueva_y)
+            # Calcular las nuevas coordenadas para el personaje
+            nueva_x_personaje = self.etiqueta.winfo_x() + (self.velocidad_x * self.direccion_x)
+            nueva_y_personaje = self.etiqueta.winfo_y() + self.y
 
-            self.caja.mover(self.velocidad_x, self.direccion_x)
+            # Verificar los límites del personaje
+            if 0 <= nueva_x_personaje <= ancho_marco - ancho_personaje - ancho_caja:
+                if 0 <= nueva_y_personaje <= alto_marco - alto_personaje:
+                    self.etiqueta.place(x=nueva_x_personaje, y=nueva_y_personaje)
+
+            # Calcular las nuevas coordenadas para la caja
+            nueva_x_caja = nueva_x_personaje + ancho_personaje
+            nueva_y_caja = nueva_y_personaje
+
+            # Verificar los límites de la caja
+            if 0 <= nueva_x_caja <= ancho_marco - ancho_caja:
+                if 0 <= nueva_y_caja <= alto_marco - alto_caja:
+                    self.caja.box.place(x=nueva_x_caja, y=nueva_y_caja)
 
         self.move_enabled = False
         self.imaP_1.after(1, self.limites)
+
+
 
     # Movimiento a la izquierda
     def izquierda(self, event):
@@ -165,7 +163,6 @@ per1 = Personajes(marco_1, caja1)
 ventana.bind("<KeyPress-a>", lambda e: per1.izquierda(e))
 ventana.bind("<KeyPress-d>", lambda e: per1.derecha(e))
 per1.animate()
-
 
 ############################################################################
 #                               Grafico
@@ -242,7 +239,7 @@ scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 ############################################################################
 #                               Calculo
 ############################################################################
-datos_registro= []
+
 # Crear los widgets para ingresar los datos
 label_fuerza = tk.Label(marco_3, text="Fuerza (N):")
 label_fuerza.pack()
@@ -256,8 +253,8 @@ label_distancia.pack()
 label_distancia2 = tk.Label(marco_3, text="")
 label_distancia2.pack()
 
-entry_distancia = tk.Entry(marco_3, justify="center")
-entry_distancia.pack()
+#entry_distancia = tk.Entry(marco_3, width=anCuarto//9, justify="center")
+#entry_distancia.pack()
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -284,73 +281,7 @@ def actualizar_velocidad_x():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-# Función para calcular el trabajo
-def calcular_trabajo():
-    global nueva_velocidad
-    try:
-        fuerza = float(entry_fuerza.get())
-
-        tiempo_transcurrido = cronometro.tiempo_transcurrido()
-
-        distancia = tiempo_transcurrido * nueva_velocidad
-
-        label_distancia2.config(text=f"La distancia es: {distancia} J")
-
-        trabajo = fuerza * distancia
-
-        label_resultado.config(text=f"El trabajo es: {trabajo} J")
-
-        # Agregar los datos a la lista del gráfico
-        datos_grafico.append((fuerza, distancia, trabajo))
-
-        # Actualizar el gráfico y la tabla
-        actualizar_grafico()
-        actualizar_tabla()
-
-        # Limpiar los campos de entrada
-        entry_fuerza.delete(0, tk.END)
-        #entry_distancia.delete(0, tk.END)
-
-    except ValueError:
-        label_resultado.config(text="Ingrese valores numéricos válidos")
-    datos_registro.append((fuerza, distancia))
-
-
-def limites(self):
-    if self.move_enabled:
-        # Obtener las dimensiones del marco
-        ancho_marco = self.imaP_1.winfo_width()
-        alto_marco = self.imaP_1.winfo_height()
-
-        # Obtener la posición actual del personaje
-        x_actual = self.etiqueta.winfo_x()
-        y_actual = self.etiqueta.winfo_y()
-
-        # Verificar si hay datos en el registro
-        if datos_registro:
-            # Obtener el último dato de fuerza y distancia ingresados
-            fuerza, distancia = datos_registro[-1]
-
-            # Calcular las nuevas coordenadas
-            nueva_x = x_actual + (self.velocidad_x * self.direccion_x * distancia)
-            nueva_y = y_actual + (self.y * distancia)
-
-            # Verificar los límites del rectángulo
-            if 0 <= nueva_x <= ancho_marco - self.etiqueta.winfo_width():
-                if 0 <= nueva_y <= alto_marco - self.etiqueta.winfo_height():
-                    self.etiqueta.place(x=nueva_x, y=nueva_y)
-
-        self.move_enabled = False
-        self.imaP_1.after(1, self.limites)
-   
-# Botón para calcular el trabajo
-btn_calcular = tk.Button(marco_3, text="Calcular", command=calcular_trabajo)
-btn_calcular.pack()
-
-# Etiqueta para mostrar el resultado
-label_resultado = tk.Label(marco_3, text="")
-label_resultado.pack()
-
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #                               Velocidad
@@ -400,10 +331,64 @@ class Cronometro:
             self.etiqueta_tiempo.config(text=f"Tiempo: {tiempo_transcurrido} segundos")
             self.ventana.after(1000, self.actualizar_cronometro)
 
+    def obtener_tiempo(self):
+        return int(time.time() - self.tiempo_inicial)
+
 cronometro = Cronometro(marco_3)
 
 cronometro.etiqueta_tiempo.pack()
 
+
+
+
+def calcular_distancia(per1):
+    global distancia
+    try:
+        tiempo_transcurrido = cronometro.obtener_tiempo()
+
+        distancia = tiempo_transcurrido * per1.velocidad_x
+
+        label_distancia2.config(text=f"La distancia es: {distancia} m")
+    
+    except ValueError:
+        label_distancia2.config(text="Ingrese valores numéricos válidos")
+
+
+# Función para calcular el trabajo
+def calcular_trabajo():
+    global distancia
+    try:
+        fuerza = float(entry_fuerza.get())
+
+        trabajo = fuerza * distancia
+
+        label_resultado.config(text=f"El trabajo es: {trabajo} J")
+
+        # Agregar los datos a la lista del gráfico
+        datos_grafico.append((fuerza, distancia, trabajo))
+
+        # Actualizar el gráfico y la tabla
+        actualizar_grafico()
+        actualizar_tabla()
+
+        # Limpiar los campos de entrada
+        entry_fuerza.delete(0, tk.END)
+        #entry_distancia.delete(0, tk.END)
+
+    except ValueError:
+        label_resultado.config(text="Ingrese valores numéricos válidos")
+
+# Botón para calcular el trabajo
+btn_calcular = tk.Button(marco_3, text="Calcular", command=calcular_trabajo)
+btn_calcular.pack()
+
+btn_calcular2 = tk.Button(marco_3, text="Calcular 2", command=lambda: calcular_distancia(per1))
+btn_calcular2.pack()
+
+
+# Etiqueta para mostrar el resultado
+label_resultado = tk.Label(marco_3, text="")
+label_resultado.pack()
 
 # Darle el enfoque a la ventana para recibir eventos de teclado
 ventana.focus_set()
