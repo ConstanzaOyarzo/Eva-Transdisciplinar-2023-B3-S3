@@ -1,30 +1,28 @@
 
-# B3 S3
+# Eva-Transdisciplinar-2023-B3-S3
 
 
 ## Descripción
 
-Este proyecto tratará sobre la creacion de una interfaz grafica, la cual nos entregra informacion de los que es el trabajo mecanico y
-cómo funciona su formula.
+En el presente proyecto se crea una interfaz grafica, la cual nos permite comprender cómo funciona el trabajo mecanico y la formula que emplea.
 
-En esta simulación se propone un metodo más sencillo para calcular el trabajo mecanico, utilizando una Fuerza y distancia en la misma
-direccion, por lo cual el coseno en esta simulacion se considera como 1.
+En esta simulación se presenta un método simplificado para calcular el trabajo mecánico. En lugar de considerar el ángulo entre la fuerza y el desplazamiento, se asume que
+están en la misma dirección, lo que implica que el coseno del ángulo es igual a 1.
 
 ## Trabajo mecanico
 
-En resumen, el trabajo mecánico es la transferencia de energía a través de una fuerza aplicada a un cuerpo. Se mide en julios y puede ser
-positivo o negativo dependiendo de si
-se transfiere o se resta energía al objeto. La energía se conserva en cualquier proceso y es necesaria para realizar transformaciones en
-los sistemas. Existen diferentes
-formas de energía y pueden convertirse de un tipo a otro.
+El trabajo mecánico es la transferencia de energía a través de una fuerza aplicada a un cuerpo. Se mide en joules y puede ser
+positivo o negativo dependiendo de si se transfiere o se resta energía al objeto.
+
+Siempre que se realice trabajo se deben considerar la fuerza aplicada y el movimiento debido a esa fuerza.
+
+Es importante tener en cuenta que el trabajo solo se realiza si hay un desplazamiento del objeto en la dirección de la fuerza aplicada. Si se aplica una fuerza sobre un
+objeto pero no hay movimiento o el desplazamiento es perpendicular a la dirección de la fuerza, entonces no se realiza trabajo.
 
 ### Breve historia asociada
 
-El origen del trabajo mecánico se remonta a la antigua Grecia, pero su enfoque moderno se desarrolló durante la Revolución Científica en los siglos XVI y XVII. Galileo
-Galilei realizó investigaciones sobre el movimiento y la caída de los objetos, sentando las bases para el estudio del trabajo. En el siglo XVII, matemáticos como Descartes y
-Fermat desarrollaron el cálculo, permitiendo una comprensión más precisa del trabajo. Leibniz introdujo el término "trabajo" en 1687. Newton, Watt y Carnot realizaron
-contribuciones clave en los siglos XVIII y XIX, estableciendo leyes y principios fundamentales. El trabajo mecánico se aplica en campos como la ingeniería y la física, y ha
-llevado a importantes avances tecnológicos en la sociedad moderna.
+En el siglo XVII, matemáticos como Descartes y Fermat desarrollaron el cálculo, permitiendo una comprensión más precisa del trabajo. Leibniz introdujo el término "trabajo"
+en 1687. Newton, Watt y Carnot realizaron contribuciones clave en los siglos XVIII y XIX, estableciendo leyes y principios fundamentales.
 
 ### Matemática empleada
 
@@ -38,11 +36,17 @@ W = F * d * cos(θ), donde F es la fuerza aplicada, d es el desplazamiento y θ 
 4.  Calcula el coseno del ángulo cos(θ)
 5.  Multiplica la fuerza, el desplazamiento y el coseno del ángulo
 
+En este caso en particular el angulo es igual a 0°, por lo que su coseno es equivalente a 1
+
 ### Aplicaciones
 
-1. Transporte: En el campo del transporte, el trabajo mecánico se utiliza en los motores de vehículos, como automóviles, aviones y barcos, para generar la fuerza necesaria y propulsar el movimiento. También se aplica en sistemas de frenado y suspensión.
-2. Deportes y recreación: En actividades deportivas y recreativas, el trabajo mecánico está presente en la realización de actividades físicas. Por ejemplo, en el levantamiento de pesas, el trabajo se realiza al vencer la gravedad y elevar los objetos.
-3. Energías renovables: En el campo de las energías renovables, el trabajo mecánico se utiliza en la generación de energía a partir de fuentes como el viento (a través de aerogeneradores) y el agua (a través de turbinas hidroeléctricas). La fuerza mecánica se convierte en energía eléctrica.
+Cada vez que se aplica una fuerza sobre un objeto y como resultado de esa fuerza se produce desplazamiento, se realiza trabajo.
+
+1. Al levantar bolsas, empujar un mueble, patear una pelota.
+2. El trabajo mecánico tambien esta presente al realizar actividades físicas. Por ejemplo, en el levantamiento de pesas,
+el trabajo se realiza al elevar las pesas. Al hacer flexiones realizas trabajo contra tu propio peso.
+3. Cuando un automovil adquiere rapidez, debido a la fuerza que genera el motor del mismo para impulsarlo. Por otro lado, al frenar, se aplica una fuerza en dirección
+opuesta al movimiento del automóvil, por lo que tambien se realiza trabajo, pero en este caso el trabajo es negativo.
 
 ## Programación
 
@@ -60,22 +64,27 @@ ventana principal, marcos, etiquetas, botones, entradas y otros elementos.
 
 - ttk: Se utiliza para crear y manejar los datos dentro de la tabla del marco 4.
 
-- Figure y FigureCanvasTkAgg: Clases especifica de Matplotlib que se utilizan para crear, mostrar gráficos en una interfaz Tkinter y que el grafico tenga una buena calidad de imagen.
+- Figure y FigureCanvasTkAgg: Clases especificas de Matplotlib que se utilizan para crear, mostrar gráficos en una interfaz Tkinter y que el grafico tenga una buena calidad
+de imagen.
 
-- Image y ImageTk: Son clases proporcionadas por la libreria PIL (Pillow) que se utilizan para cargar y mostrar imágenes en la interfaz Tkinter.
+- Image y ImageTk: Se utilizan para cargar y mostrar imágenes en la interfaz de Tkinter.
 
 ### Guia de instalación
 
-Aca se escribe
+[https://www.youtube.com/]
 
 ### Guia de uso
 
-https://www.youtube.com/
+[https://www.youtube.com/]
 
 ### Explicación del código desarrollado.
 
-https://www.youtube.com/
+[https://www.youtube.com/]
 
 ## Conclusiones
 
-Aca va la conclusion
+El trabajo mecanico es una magnitud fisica que se encuentra presente en nuestra vida cotidiana, incluso sin darnos cuenta , ya que ocurre cada vez que se aplica fuerza a un
+objeto y este se desplaza como resultado.
+
+Es importante destacar que el trabajo no solo implica fuerza, sino también el desplazamiento en la dirección de esa fuerza. Si empujas un objeto pero no se mueve o el
+desplazamiento es perpendicular a la dirección de la fuerza, no se está realizando trabajo.
