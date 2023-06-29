@@ -4,12 +4,12 @@
 
 ## Descripción
 
-En el presente proyecto se crea una interfaz grafica, la cual nos permite comprender cómo funciona el trabajo mecanico y la formula que emplea.
+En el presente proyecto se crea una interfaz gráfica, la cual nos permite comprender cómo funciona el trabajo mecánico y la fórmula que emplea.
 
 En esta simulación se presenta un método simplificado para calcular el trabajo mecánico. En lugar de considerar el ángulo entre la fuerza y el desplazamiento, se asume que
 están en la misma dirección, lo que implica que el coseno del ángulo es igual a 1.
 
-## Trabajo mecanico
+## Trabajo mecánico
 
 El trabajo mecánico es la transferencia de energía a través de una fuerza aplicada a un cuerpo. Se mide en joules y puede ser
 positivo o negativo dependiendo de si se transfiere o se resta energía al objeto.
@@ -28,25 +28,23 @@ en 1687. Newton, Watt y Carnot realizaron contribuciones clave en los siglos XVI
 
 W = F * d * cos(θ), donde F es la fuerza aplicada, d es el desplazamiento y θ es el ángulo entre la fuerza y el desplazamiento.
 
-### Como se resuelve
+### Cómo se resuelve
 
 1.  Primero necesitas conocer la magnitud de la fuerza aplicada sobre el objeto
-2.  Determina el valor numerico del desplazamiento
+2.  Determina el valor numérico del desplazamiento
 3.  Determina el ángulo entre la fuerza y el desplazamiento, puede ser cualquier valor entre 0° y 180°
 4.  Calcula el coseno del ángulo cos(θ)
 5.  Multiplica la fuerza, el desplazamiento y el coseno del ángulo
 
-En este caso en particular el angulo es igual a 0°, por lo que su coseno es equivalente a 1
+En este caso en particular el ángulo es igual a 0°, por lo que su coseno es equivalente a 1
 
 ### Aplicaciones
 
 Cada vez que se aplica una fuerza sobre un objeto y como resultado de esa fuerza se produce desplazamiento, se realiza trabajo.
 
 1. Al levantar bolsas, empujar un mueble, patear una pelota.
-2. El trabajo mecánico tambien esta presente al realizar actividades físicas. Por ejemplo, en el levantamiento de pesas,
-el trabajo se realiza al elevar las pesas. Al hacer flexiones realizas trabajo contra tu propio peso.
-3. Cuando un automovil adquiere rapidez, debido a la fuerza que genera el motor del mismo para impulsarlo. Por otro lado, al frenar, se aplica una fuerza en dirección
-opuesta al movimiento del automóvil, por lo que tambien se realiza trabajo, pero en este caso el trabajo es negativo.
+2. El trabajo mecánico también está presente al realizar actividades físicas. Por ejemplo, en el levantamiento de pesas, el trabajo se realiza al elevar las pesas. Al hacer flexiones realizas trabajo contra tu propio peso.
+3. Cuando un automóvil adquiere rapidez, debido a la fuerza que genera el motor del mismo para impulsarlo. Por otro lado, al frenar, se aplica una fuerza en dirección opuesta al movimiento del automóvil, por lo que también se realiza trabajo, pero en este caso el trabajo es negativo.
 
 ## Programación
 
@@ -64,7 +62,7 @@ ventana principal, marcos, etiquetas, botones, entradas y otros elementos.
 
 - ttk: Se utiliza para crear y manejar los datos dentro de la tabla del marco 4.
 
-- Figure y FigureCanvasTkAgg: Clases especificas de Matplotlib que se utilizan para crear, mostrar gráficos en una interfaz Tkinter y que el grafico tenga una buena calidad
+- Figure y FigureCanvasTkAgg: Clases específicas de Matplotlib que se utilizan para crear, mostrar gráficos en una interfaz Tkinter y que el gráfico tenga una buena calidad
 de imagen.
 
 - Image e ImageTk: Se utilizan para cargar y mostrar imágenes en la interfaz de Tkinter.
@@ -75,7 +73,7 @@ de imagen.
 
 [Descargar ejecutable](https://www.mediafire.com/file/et161eg3wo2gkwi/archivo+exe.rar/file)
 
-### Guia de uso
+### Guía de uso
 
 [Link del video](https://www.youtube.com/watch?v=vFWj80KYi44)
 
@@ -85,7 +83,7 @@ de imagen.
 
 ## Conclusiones
 
-El trabajo mecanico es una magnitud fisica que se encuentra presente en nuestra vida cotidiana, incluso sin darnos cuenta , ya que ocurre cada vez que se aplica fuerza a un
+El trabajo mecánico es una magnitud física que se encuentra presente en nuestra vida cotidiana, incluso sin darnos cuenta , ya que ocurre cada vez que se aplica fuerza a un
 objeto y este se desplaza como resultado.
 
 Es importante destacar que el trabajo no solo implica fuerza, sino también el desplazamiento en la dirección de esa fuerza. Si empujas un objeto pero no se mueve o el
