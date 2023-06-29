@@ -71,17 +71,17 @@ de imagen.
 
 ### Guia de instalación
 
-https://www.youtube.com/watch?v=RAZG22fNBLc
+[Link del video](https://www.youtube.com/watch?v=RAZG22fNBLc)
 
 [Descargar ejecutable](https://www.mediafire.com/file/et161eg3wo2gkwi/archivo+exe.rar/file)
 
 ### Guia de uso
 
-https://www.youtube.com/watch?v=vFWj80KYi44
+[Link del video](https://www.youtube.com/watch?v=vFWj80KYi44)
 
 ### Explicación del código desarrollado.
 
-https://www.youtube.com/watch?v=W3y99-_TyHg
+[Link del video](https://www.youtube.com/watch?v=W3y99-_TyHg)
 
 ## Conclusiones
 
