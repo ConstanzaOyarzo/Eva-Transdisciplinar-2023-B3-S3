@@ -73,7 +73,7 @@ de imagen.
 
 https://www.youtube.com/watch?v=RAZG22fNBLc
 
-[Descargar ejecutable]https://www.mediafire.com/file/et161eg3wo2gkwi/archivo+exe.rar/file
+[Descargar ejecutable](https://www.mediafire.com/file/et161eg3wo2gkwi/archivo+exe.rar/file)
 
 ### Guia de uso
 
