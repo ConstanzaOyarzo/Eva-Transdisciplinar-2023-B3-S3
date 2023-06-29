@@ -67,11 +67,13 @@ ventana principal, marcos, etiquetas, botones, entradas y otros elementos.
 - Figure y FigureCanvasTkAgg: Clases especificas de Matplotlib que se utilizan para crear, mostrar gráficos en una interfaz Tkinter y que el grafico tenga una buena calidad
 de imagen.
 
-- Image y ImageTk: Se utilizan para cargar y mostrar imágenes en la interfaz de Tkinter.
+- Image e ImageTk: Se utilizan para cargar y mostrar imágenes en la interfaz de Tkinter.
 
 ### Guia de instalación
 
 https://www.youtube.com/watch?v=RAZG22fNBLc
+
+[Descargar ejecutable]https://www.mediafire.com/file/et161eg3wo2gkwi/archivo+exe.rar/file
 
 ### Guia de uso
 
