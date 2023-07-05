@@ -9,6 +9,7 @@ En el presente proyecto se crea una interfaz gráfica, la cual nos permite compr
 En esta simulación se presenta un método simplificado para calcular el trabajo mecánico. En lugar de considerar el ángulo entre la fuerza y el desplazamiento, se asume que
 están en la misma dirección, lo que implica que el coseno del ángulo es igual a 1.
 
+[Video explicatorio](https://www.youtube.com/watch?v=t-4XDNp-vIw)
 [Descargar ejecutable](https://www.mediafire.com/file/et161eg3wo2gkwi/archivo+exe.rar/file)
 
 ## Trabajo mecánico
