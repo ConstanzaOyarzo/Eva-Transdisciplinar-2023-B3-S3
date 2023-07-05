@@ -9,10 +9,6 @@ En el presente proyecto se crea una interfaz gráfica, la cual nos permite compr
 En esta simulación se presenta un método simplificado para calcular el trabajo mecánico. En lugar de considerar el ángulo entre la fuerza y el desplazamiento, se asume que
 están en la misma dirección, lo que implica que el coseno del ángulo es igual a 1.
 
-[Video explicatorio](https://www.youtube.com/watch?v=t-4XDNp-vIw)
-
-[Descargar ejecutable](https://www.mediafire.com/file/et161eg3wo2gkwi/archivo+exe.rar/file)
-
 ## Trabajo mecánico
 
 El trabajo mecánico es la transferencia de energía a través de una fuerza aplicada a un cuerpo. Se mide en joules y puede ser
@@ -70,6 +66,13 @@ ventana principal, marcos, etiquetas, botones, entradas y otros elementos.
 de imagen.
 
 - Image e ImageTk: Se utilizan para cargar y mostrar imágenes en la interfaz de Tkinter.
+
+
+### Guia de uso
+
+[Video explicatorio](https://www.youtube.com/watch?v=t-4XDNp-vIw)
+
+[Descargar ejecutable](https://www.mediafire.com/file/et161eg3wo2gkwi/archivo+exe.rar/file)
 
 ## Conclusiones
 
