@@ -10,6 +10,7 @@ En esta simulación se presenta un método simplificado para calcular el trabajo
 están en la misma dirección, lo que implica que el coseno del ángulo es igual a 1.
 
 [Video explicatorio](https://www.youtube.com/watch?v=t-4XDNp-vIw)
+
 [Descargar ejecutable](https://www.mediafire.com/file/et161eg3wo2gkwi/archivo+exe.rar/file)
 
 ## Trabajo mecánico
