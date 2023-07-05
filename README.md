@@ -68,7 +68,7 @@ de imagen.
 - Image e ImageTk: Se utilizan para cargar y mostrar imágenes en la interfaz de Tkinter.
 
 
-### Guia de uso
+### Guia de uso e instalación
 
 [Video explicatorio](https://www.youtube.com/watch?v=t-4XDNp-vIw)
 
